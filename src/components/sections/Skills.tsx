@@ -22,30 +22,50 @@ function SkillsFallback() {
     <div className="space-y-8">
       <div>
         <h3 className="text-sm font-medium text-text-secondary mb-3 text-center">Primary</h3>
-        <div className="flex flex-wrap justify-center gap-3">
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={{ animate: { transition: { staggerChildren: 0.08 } } }}
+          className="flex flex-wrap justify-center gap-3"
+        >
           {inner.map((s) => (
-            <div
+            <motion.div
               key={s.name}
+              variants={{
+                initial: { opacity: 0, scale: 0.8 },
+                animate: { opacity: 1, scale: 1 },
+              }}
               className="px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium"
             >
               {s.name}
               {s.years && <span className="text-text-secondary ml-1">· {s.years}</span>}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <div>
         <h3 className="text-sm font-medium text-text-secondary mb-3 text-center">Secondary</h3>
-        <div className="flex flex-wrap justify-center gap-2">
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={{ animate: { transition: { staggerChildren: 0.05 } } }}
+          className="flex flex-wrap justify-center gap-2"
+        >
           {outer.map((s) => (
-            <div
+            <motion.div
               key={s.name}
+              variants={{
+                initial: { opacity: 0, scale: 0.8 },
+                animate: { opacity: 1, scale: 1 },
+              }}
               className="px-3 py-1.5 rounded-full bg-bg-surface border text-text-secondary text-sm"
             >
               {s.name}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

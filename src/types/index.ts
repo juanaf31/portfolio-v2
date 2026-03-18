@@ -1,11 +1,25 @@
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
+export interface CaseStudy {
+  context: string;
+  role: string;
+  challenges: { title: string; description: string }[];
+  decisions: { title: string; description: string }[];
+  results: ProjectMetric[];
+}
+
 export interface Project {
   slug: string;
   title: string;
   description: string;
   tech: string[];
   period: string;
-  metrics: { label: string; value: string }[];
+  metrics: ProjectMetric[];
   role: string;
+  caseStudy: CaseStudy;
 }
 
 export interface Skill {

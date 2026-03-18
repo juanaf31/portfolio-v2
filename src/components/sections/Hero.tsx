@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Button from "@/components/ui/Button";
 
 const SceneContainer = dynamic(
@@ -13,8 +14,17 @@ const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
 });
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
@@ -31,7 +41,10 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-container mx-auto px-6 py-32">
+      <motion.div
+        style={{ y: textY, opacity: textOpacity }}
+        className="relative z-10 max-w-container mx-auto px-6 py-32"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,7 +96,7 @@ export default function Hero() {
             </Button>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div

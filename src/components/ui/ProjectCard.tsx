@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Project } from "@/types";
 import TechBadge from "./TechBadge";
@@ -81,11 +82,32 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
 
           {/* Tech */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-6">
             {project.tech.map((t) => (
               <TechBadge key={t} name={t} />
             ))}
           </div>
+
+          {/* Case Study Link */}
+          <Link
+            href={`/project/${project.slug}`}
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-secondary transition-colors"
+          >
+            View Case Study
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Link>
         </div>
       </div>
     </motion.div>

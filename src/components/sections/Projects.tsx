@@ -1,8 +1,19 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ui/ProjectCard";
 import SectionHeading from "@/components/ui/SectionHeading";
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.15 } },
+};
+
+const staggerItem = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Projects() {
   return (
@@ -12,11 +23,19 @@ export default function Projects() {
           title="Featured Projects"
           subtitle="Complex SaaS platforms built for real users at scale."
         />
-        <div className="grid md:grid-cols-3 gap-6">
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid md:grid-cols-3 gap-6"
+        >
           {projects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} />
+            <motion.div key={project.slug} variants={staggerItem}>
+              <ProjectCard project={project} index={i} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import PageTransition from "@/components/layout/PageTransition";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -42,7 +43,9 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <SmoothScroll />
           <Navbar />
-          <main>{children}</main>
+          <main>
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
         </ThemeProvider>
       </body>
