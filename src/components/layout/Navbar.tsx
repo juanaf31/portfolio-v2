@@ -21,6 +21,7 @@ export default function Navbar() {
 
   return (
     <nav
+      aria-label="Main navigation"
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
@@ -64,6 +65,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             className="w-9 h-9 flex flex-col items-center justify-center gap-1.5"
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             <span
               className={cn(

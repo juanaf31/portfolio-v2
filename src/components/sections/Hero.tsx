@@ -32,6 +32,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <SceneContainer
           className="w-full h-full"
+          eager
           fallback={
             <div className="w-full h-full bg-gradient-to-br from-accent/5 to-accent-secondary/5" />
           }
