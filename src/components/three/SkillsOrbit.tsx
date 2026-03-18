@@ -54,7 +54,6 @@ function SkillNode({
         color={isDark ? "#f0f0f3" : "#1a1a2e"}
         anchorX="center"
         anchorY="bottom"
-        font="/fonts/GeistVF.woff"
       >
         {skill.name}
       </Text>
